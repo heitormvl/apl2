@@ -12,10 +12,10 @@
 //  Gabriel Braum (32224532)
 //  Roberto Rinco (32269471)
 
-// TODO: Listar todas as referências consultadas para solucionar a atividade.
 // Referências:
 //  Como checar se um arquivo existe: https://www.baeldung.com/java-file-directory-exists
 
+// Imports
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -24,27 +24,34 @@ public class MainApl2 {
     public static void main(String[] args) {
         LinkedListOriginal list = new LinkedListOriginal();
 
-        // TODO: Carregar o conteúdo do arquivo "dados.txt" e adicionar cada linha como um nó na LinkedListOriginal list.
+        System.out.print("\033[H\033[2J"); // Limpa a tela do terminal
 
         if(args.length == 0) {
-            System.out.print("\033[H\033[2J");
             System.out.println("Nenhum arquivo de entrada foi especificado.");
             System.exit(1);
-        }
+        } // Verifica se o arquivo de entrada foi especificado
 
         if(!Files.exists(Paths.get(args[0]))) {
-            System.out.print("\033[H\033[2J");
             System.out.println("O arquivo de entrada especificado '" + args[0] + "' nao existe.");
             System.exit(1);
-        }
+        } // Verifica se o arquivo de entrada existe
 
-        String dadosEntrada = "";
+        String dadosEntrada = ""; // String que armazena os dados de entrada do arquivo dados.txt
 
         try {
-            dadosEntrada = Data.loadTextFileToString(args[0]);
+            dadosEntrada = Data.loadTextFileToString(args[0]); 
         } catch (Exception e) {
-            // TODO: handle exception
-        }
+            System.out.print("\033[H\033[2J");
+            System.out.println("Ocorreu um erro ao ler o arquivo de entrada especificado '" + args[0] + "'.");
+            System.exit(1);
+        }   // Carrega os dados do arquivo de entrada para a string dadosEntrada
+
+        String[] linhasDadosLegados = dadosEntrada.split("\n"); // Separa os dados de entrada em linhas
+
+        for (int i=0 ; i < linhasDadosLegados.length; i++) { 
+            String[] dadosLegados = linhasDadosLegados[i].split("#"); 
+            list.insert(Integer.parseInt(dadosLegados[0]), dadosLegados[1], Integer.parseInt(dadosLegados[2]), Integer.parseInt(dadosLegados[3]));
+        } // Para cada linha de dados de entrada, separa os dados de acordo com o caractere '#' e insere na lista
 
         System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
         System.out.println(list);
