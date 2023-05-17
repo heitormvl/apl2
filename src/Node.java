@@ -19,14 +19,16 @@
 
 public class Node {
 
+    // Atributos
     private String id;
     private String nome;
     private float nota;
     private Node next;
     private Node prev;
 
+    // Construtores
     public Node() {
-        this("", "", 0, null, null);
+        this("", "", 0, null, null); 
     }
 
     public Node(String id, String nome, float nota, Node next, Node prev) {
@@ -37,6 +39,7 @@ public class Node {
         this.prev = prev;
     }
 
+    // Getters e Setters
     public String getId() {
         return id;
     }
@@ -77,6 +80,7 @@ public class Node {
         this.prev = prev;
     }
 
+    // toString
     @Override
     public String toString() {
         return "[dados: (" + id + ";" + nome + ";" + nota + ") | next: " + next + " | prev: " + prev + "]";
