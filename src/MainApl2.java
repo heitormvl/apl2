@@ -50,17 +50,17 @@ public class MainApl2 {
 
         for (int i=0 ; i < linhasDadosLegados.length; i++) { 
             String[] dadosLegados = linhasDadosLegados[i].split("#"); 
-            list.insert(Integer.parseInt(dadosLegados[0]), dadosLegados[1], Integer.parseInt(dadosLegados[2]), Integer.parseInt(dadosLegados[3]));
+            list.append(Integer.parseInt(dadosLegados[0]), dadosLegados[1], Integer.parseInt(dadosLegados[2]), Integer.parseInt(dadosLegados[3]));
         } // Para cada linha de dados de entrada, separa os dados de acordo com o caractere '#' e insere na lista
 
         System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
         System.out.println(list);
         System.out.println("<<<<<<<<<< Dados originais (sistema legado) <<<<<<<<<<\n");
 
-        // DLinkedList fixedList = Operation.map(list);
-        // System.out.println(">>>>>>>>>> Dados convertidos para a nova representação dos dados >>>>>>>>>>");
-        // System.out.println(fixedList);
-        // System.out.println("<<<<<<<<<< Dados convertidos para a nova representação dos dados <<<<<<<<<<\n");
+        DLinkedList fixedList = Operation.map(list);
+        System.out.println(">>>>>>>>>> Dados convertidos para a nova representação dos dados >>>>>>>>>>");
+        System.out.println(fixedList);
+        System.out.println("<<<<<<<<<< Dados convertidos para a nova representação dos dados <<<<<<<<<<\n");
 
         // DLinkedList filteredGradedList = Operation.filterRemoveNonGraded(fixedList);
         // System.out.println(">>>>>>>>>> Lista filtrada (somente notas válidas) >>>>>>>>>>");

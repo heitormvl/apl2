@@ -233,16 +233,20 @@ public class DLinkedList {
 
         Node node = head;
         while (node != null) {
-            sb.append("(")
+            sb.append(node.getPrev() == null? "null": node.getPrev().getId())
+            .append(" <- ")
+            .append("(")
             .append(node.getId())
-            .append(" ; ")
+            .append(";")
             .append(node.getNome())
-            .append(" ; ")
+            .append(";")
             .append(node.getNota())
-            .append(")\n");
+            .append(")")
+            .append(" -> ")
+            .append(node.getNext() == null? "null": node.getNext().getId())
+            .append("\n");
             node = node.getNext();
         }
-        sb.append("null.");
 
         return sb.toString();
     }

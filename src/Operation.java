@@ -3,7 +3,12 @@
 //*************************** ATENÇÃO! *****************************
 // arquivo: src/apl2/Operation.java
 
-// TODO: Colocar a identificação dos(as) integrantes aqui.
+// Programa por:
+//  Heitor Maciel (32251661)
+//  Davi Rodrigues (32266960)
+//  Vinícius Magno (32223201)
+//  Gabriel Braum (32224532)
+//  Roberto Rinco (32269471)
 
 public class Operation {
 
@@ -17,8 +22,29 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém o mapeamento da coleção de dados {@code original} para a nova estrutura usada pelo sistema de notas. 
 	 */
 	public static DLinkedList map(final LinkedListOriginal original) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		
+        DLinkedList list = new DLinkedList();
+        NodeOriginal node = original.getHead();
+
+        while (node != null) {
+            
+            // Trata o ID
+            int idInicial = node.getId();	
+            int primeiroDigito = idInicial / 100;
+            boolean par = primeiroDigito % 2 == 0;
+            String idNovo = "23.S" + (par ? "2" : "1") + "-" + idInicial;
+
+            // Trata a nota
+            float nota = node.getInteiro() < 0 || node.getDecimo() < 0 ? 99.9f : node.getInteiro() + node.getDecimo() / 10.0f;
+
+            // Cria um novo nó e o insere na list
+            list.append(idNovo, node.getNome(), nota);
+
+            // Avança para o próximo nó
+            node = node.getNext();
+        }
+
+        return list; 
 	}
 
 	/**
