@@ -1,11 +1,11 @@
 // arquivo: src/apl2/Node.java
 
 // Programa por:
-// Heitor Maciel (32251661)
-// Davi Rodrigues (32266960)
-// Vinícius Magno (32223201)
-// Gabriel Braum (32224532)
-// Roberto Rinco (32269471)
+//  Heitor Maciel (32251661)
+//  Davi Rodrigues (32266960)
+//  Vinícius Magno (32223201)
+//  Gabriel Braum (32224532)
+//  Roberto Rinco (32269471)
 
 // -- A classe Node (que pertence ao pacote apl2) deve conter os atributos que
 // representam a nova versão dos dados de uma pessoa, conforme descrito no
@@ -18,31 +18,34 @@
 // {...}, retornando uma string com os valores dos atributos da classe.
 
 public class Node {
-	
-	private String id;
-    private String nome;
-    private int nota;
-    private Node next;
-    private Node previous;
 
+    // Atributos
+    private String id;
+    private String nome;
+    private float nota;
+    private Node next;
+    private Node prev;
+
+    // Construtores
     public Node() {
-        this("", "", 0, null, null);
+        this("", "", 0, null, null); 
     }
-	
-    public Node(String id, String nome, int nota, Node next, Node previous) {
-        this.id = "2023.S1" + id;
+
+    public Node(String id, String nome, float nota, Node next, Node prev) {
+        this.id = id;
         this.nome = nome;
         this.nota = nota;
         this.next = next;
-        this.previous = previous;
+        this.prev = prev;
     }
 
+    // Getters e Setters
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id= id;
+        this.id = id;
     }
 
     public String getNome() {
@@ -50,15 +53,15 @@ public class Node {
     }
 
     public void setNome(String nome) {
-        this.nome= nome;
+        this.nome = nome;
     }
 
-    public int getNota() {
+    public float getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
-        this.nota= nota;
+    public void setNota(float nota) {
+        this.nota = nota;
     }
 
     public Node getNext() {
@@ -66,20 +69,20 @@ public class Node {
     }
 
     public void setNext(Node next) {
-        this.next=next;
+        this.next = next;
     }
 
-    public Node getPrevious() {
-        return previous;
+    public Node getPrev() {
+        return prev;
     }
 
-    public void setPrevious(Node previous) {
-        this.previous=previous;
+    public void setPrev(Node prev) {
+        this.prev = prev;
     }
 
+    // toString
     @Override
     public String toString() {
-        return "[dados: (" + id + ";" + nome + ";" + nota + ") | next: " + next + "]";
+        return "[dados: (" + id + ";" + nome + ";" + nota + ") | next: " + next + " | prev: " + prev + "]";
     }
-
 }
