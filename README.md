@@ -18,7 +18,7 @@ O objetivo desse programa é implementar uma estrutura de dados do tipo lista en
 
 ## Como usar
 
-Para usar esse programa, basta compilar o arquivo `main.c` e executar o arquivo `main.exe` gerado.
+Para usar esse programa, basta clonar o repositório e executar o arquivo `main.java`.
 
 ## Autores
 
