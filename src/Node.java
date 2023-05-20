@@ -83,6 +83,7 @@ public class Node {
     // toString
     @Override
     public String toString() {
-        return "[dados: (" + id + ";" + nome + ";" + nota + ") | next: " + next + " | prev: " + prev + "]";
+        // return getPrev().getId() + " <- " + "(" + getId() + ";" + getNome() + ";" + getNota() + ")" + " -> " + getNext().getId();
+        return (getPrev() == null? "null" : getPrev().getId()) + " <- " + "(" + getId() + ";" + getNome() + ";" + getNota() + ")" + " -> " + (getNext() == null? "null" : getNext().getId());
     }
 }
