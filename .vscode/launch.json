@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainApl2",
+            "request": "launch",
+            "mainClass": "MainApl2",
+            "projectName": "apl2_797897a5"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
