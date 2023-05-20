@@ -52,6 +52,7 @@ public class Data {
      * @throws IOException Problema ao escrever conteúdo no arquivo texto (exceção do {@code BufferedWriter}).
      */
     public static void saveStringToTextFile(String filename, String contents) throws FileNotFoundException, IOException {
+
         OutputStream os = new FileOutputStream(filename);
         OutputStreamWriter osw = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(osw);

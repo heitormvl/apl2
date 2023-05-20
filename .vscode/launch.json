@@ -9,21 +9,23 @@
             "name": "MainApl2",
             "request": "launch",
             "mainClass": "MainApl2",
-            "projectName": "apl2_797897a5"
+            "projectName": "apl2_2e6d99a7"
         },
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": "C:\\Users\\heito\\OneDrive\\Documentos\\Mackenzie\\Estrutura de dados\\apl2\\src\\dados.txt"
+            "args": [
+                "C:\\Users\\heito\\OneDrive\\Documentos\\Mackenzie\\Estrutura de dados\\apl2-main\\apl2\\src\\dados.txt"
+            ]
         },
         {
             "type": "java",
             "name": "MainApl2",
             "request": "launch",
             "mainClass": "MainApl2",
-            "projectName": "apl2_2e6d99a7"
+            "projectName": "apl2-main_2d07e1f"
         }
     ]
 }

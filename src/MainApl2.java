@@ -27,9 +27,9 @@ public class MainApl2 {
         System.out.print("\033[H\033[2J"); // Limpa a tela do terminal
 
         if(args.length == 0) {
-            System.out.println("Nenhum arquivo de entrada foi especificado.");
-            System.exit(1);
-        } // Verifica se o arquivo de entrada foi especificado
+            args = new String[1];
+            args[0] = "dados.txt";
+        } // Se nenhum argumento for passado, o arquivo de entrada padrão é dados.txt
 
         if(!Files.exists(Paths.get(args[0]))) {
             System.out.println("O arquivo de entrada especificado '" + args[0] + "' nao existe.");
@@ -133,6 +133,14 @@ public class MainApl2 {
         testList.clear();
         System.out.println(
         ">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
-    }
 
+        // Presione enter para encerrar
+        System.out.println("Pressione enter para encerrar...");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao tentar encerrar o programa.");
+            System.exit(1);
+        }
+    }
 }
