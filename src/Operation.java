@@ -32,7 +32,7 @@ public class Operation {
             int idInicial = node.getId();	
             int primeiroDigito = idInicial / 100;
             boolean par = primeiroDigito % 2 == 0;
-            String idNovo = "23.S" + (par ? "1" : "1") + "-" + idInicial;
+            String idNovo = "23.S" + (par ? "2" : "1") + "-" + idInicial;
 
             // Trata a nota
             float nota = node.getInteiro() < 0 || node.getDecimo() < 0 ? 99.9f : node.getInteiro() + node.getDecimo() / 10.0f;
