@@ -47,6 +47,7 @@ public class MainApl2 {
 
             // Tratamento da opção escolhida
             try {
+
                 switch (op) {
 
                 // Verificar o arquivo de entrada
@@ -111,11 +112,12 @@ public class MainApl2 {
                 }
             } catch (Exception e) {
                     System.out.println("\nErro ao ler: " + e.getMessage() + "\n");
-                }
-                // Aguarda o ENTER para continuar
-                System.out.println("Pressione ENTER para continuar...");
-                scanner.nextLine();
-                scanner.nextLine();
+            }
+            // Aguarda o ENTER para continuar
+            System.out.println("Pressione ENTER para continuar...");
+            scanner.nextLine();
+            scanner.nextLine();
+            
         }
 
         // Fecha o scanner
