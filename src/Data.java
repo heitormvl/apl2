@@ -1,8 +1,4 @@
-//******************** ATENÇÃO! *********************
-// O conteúdo deste arquivo não deve ser modificado!
-//******************** ATENÇÃO! *********************
-// arquivo: src/apl2/Data.java
-
+// Imports
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -16,20 +12,16 @@ import java.io.OutputStreamWriter;
 
 public class Data {
 	
-	/**
-	 * Cria uma string com o conteúdo do arquivo texto passado no parâmetro {@code filename}. 
-	 * 
-	 * @param filename Nome do arquivo texto a ser lido pelo método.
-	 * @return {@code String} contendo todo o conteúdo do arquivo texto.
-	 * @throws FileNotFoundException Arquivo passado no parâmetro {@code filename} não existe (exceção do {@code FileInputStream}).
-	 * @throws IOException Problema ao ler conteúdo do arquivo texto (exceção do {@code BufferedReader}).
-	 */
+	// Carrega o conteúdo do arquivo texto passado no parâmetro filename e retorna uma String com o conteúdo do arquivo
     public static String loadTextFileToString(String filename) throws FileNotFoundException, IOException {
-        InputStream is = new FileInputStream(filename);
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
 
-        StringBuilder sb = new StringBuilder();
+        InputStream is = new FileInputStream(filename); // Abre o arquivo texto para leitura
+        InputStreamReader isr = new InputStreamReader(is); // Cria um InputStreamReader para ler o InputStream
+        BufferedReader br = new BufferedReader(isr); // Cria um BufferedReader para ler o InputStreamReader
+
+        StringBuilder sb = new StringBuilder(); // Cria um StringBuilder para concatenar o conteúdo do arquivo texto
+
+        // Enquanto houver linhas no arquivo texto, lê uma linha e concatena no StringBuilder
 		while (true) {
             String line = br.readLine();
             if (line == null) {
@@ -38,29 +30,24 @@ public class Data {
             sb.append(line).append('\n');
         }
 		
-		is.close();
+		is.close(); // Fecha o InputStream
 		
-        return sb.toString();
+        return sb.toString(); // Retorna o conteúdo do arquivo texto
+        
     }
 
-    /**
-     * Salva o conteúdo da {@code String} passada no parâmetro {@code contents} no arquivo texto passado no parâmetro {@code filename}.
-     *  
-     * @param filename Nome do arquivo texto para salvar o conteúdo da {@code String} {@code contents}.
-     * @param contents {@code String} com o conteúdo a ser salvo no arquivo texto {@code filename}.
-     * @throws FileNotFoundException Arquivo passado no parâmetro {@code filename} não existe (exceção do {@code FileOutputStream}).
-     * @throws IOException Problema ao escrever conteúdo no arquivo texto (exceção do {@code BufferedWriter}).
-     */
+    // Salva o conteúdo passado no parâmetro contents no arquivo texto passado no parâmetro filename
     public static void saveStringToTextFile(String filename, String contents) throws FileNotFoundException, IOException {
 
-        OutputStream os = new FileOutputStream(filename);
-        OutputStreamWriter osw = new OutputStreamWriter(os);
-        BufferedWriter bw = new BufferedWriter(osw);
+        OutputStream os = new FileOutputStream(filename); // Abre o arquivo texto para escrita
+        OutputStreamWriter osw = new OutputStreamWriter(os); // Cria um OutputStreamWriter para escrever no OutputStream
+        BufferedWriter bw = new BufferedWriter(osw); // Cria um BufferedWriter para escrever no OutputStream
 
-        bw.write(contents);
-        bw.flush();
+        bw.write(contents); // Escreve o conteúdo no arquivo texto
+        bw.flush(); // Força a escrita do conteúdo no arquivo texto
         
-        os.close();
+        os.close(); // Fecha o OutputStream
+
     }
 
 }

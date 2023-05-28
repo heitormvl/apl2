@@ -1,237 +1,212 @@
-// arquivo: src/apl2/DLinkedList.java
-
-// Programa por:
-//  Heitor Maciel (32251661)
-//  Davi Rodrigues (32266960)
-//  Vinícius Magno (32223201)
-//  Gabriel Braum (32224532)
-//  Roberto Rinco (32269471)
-
-// -- A classe DLinkedList (que pertence ao pacote apl2) deve implementar uma
-// lista duplamente encadeada. Os nós dessa lista são do tipo [da classe] Node.
-// -- A classe deve possuir dois nós especiais, head e tail, que são
-// referências para o primeiro e último nó da lista, respectivamente.
-// -- A classe deve possuir um contador de quantos nós existem na lista.
-// -- A classe deve sobrescrever (override) o método public String toString()
-// {...}, retornando uma string com o conteúdo da lista.
-// -- A classe deve implementar as operações a seguir, respeitando o
-// comportamento descrito em cada operação.
-
 public class DLinkedList {
 
+    // Atributos
     private Node head;
     private Node tail;
     private int count;
 
-    // OPERAÇÃO: Método construtor
-    // COMPORTAMENTO: Cria uma lista vazia.
+    // Construtor padrão
     public DLinkedList() {
-
         head = null;
         tail = null;
         count = 0;
-
     }
 
-    // OPERAÇÃO: insert(<dados da pessoa>)
-    // COMPORTAMENTO: Aloca um Node que contém os <dados da pessoa> e insere o
-    // novo nó no início da lista.
+    // Insere um elemento no início da lista
     public void insert(String id, String nome, float nota) {
 
+        // Cria um novo nó e o inicializa com os parâmetros recebidos
         Node node = new Node(id, nome, nota, head, null);
 
+        // Se a lista estiver vazia, o novo nó será também a cauda da lista
         if (isEmpty()) {
             tail = node;
         }
+
+        // Se a lista não estiver vazia, o novo nó será o anterior da cabeça
         else {
             head.setPrev(node);
         }
 
-        head = node;
-        ++count;
+        head = node; // O novo nó passa a ser a cabeça da lista
+        ++count; // Incrementa o contador de elementos
 
     }
 
-    // OPERAÇÃO: append(<dados da pessoa>)
-    // COMPORTAMENTO: Aloca um Node que contém os <dados da pessoa> e insere o
-    // novo nó no final da lista.
+    // Insere um elemento no final da lista
     public void append(String id, String nome, float nota) {
         
+        // Cria um novo nó e o inicializa com os parâmetros recebidos
         Node node = new Node(id, nome, nota, null, tail);
 
+        // Se a lista estiver vazia, o novo nó será também a cabeça da lista
         if (isEmpty()) {
             head = node;
         }
+
+        // Se a lista não estiver vazia, o novo nó será o próximo da cauda
         else {
             tail.setNext(node);
         }
 
-        tail = node;
-        ++count;
+        tail = node; // O novo nó passa a ser a cauda da lista
+        ++count; // Incrementa o contador de elementos
 
     }
 
-    // OPERAÇÃO: removeHead()
-    // COMPORTAMENTO: Remove o nó do início da lista e retorna a referência do
-    // nó removido.
-    // Ou retorna null caso a lista esteja vazia.
+    // Insere um elemento na posição especificada
     public Node removeHead() {
         
+        // Se a lista estiver vazia, retorna null
         if (isEmpty()) {
             return null;
         }
 
-        Node toRemove = head;
+        Node toRemove = head; // Guarda a referência do nó a ser removido
 
-        head = head.getNext();
-        --count;
+        head = head.getNext(); // A cabeça passa a ser o próximo nó
+        --count; // Decrementa o contador de elementos
 
+        // Se a lista não estiver vazia, o anterior da cabeça será null
         if (head != null) {
             head.setPrev(null);
         }
+
+        // Se a lista estiver vazia, a cauda também será null
         else {
             tail = null;
         }
 
-        toRemove.setNext(null);
-        return toRemove;
+        toRemove.setNext(null); // O próximo do nó removido será null
+        return toRemove; // Retorna a referência do nó removido
 
     }
 
-    // OPERAÇÃO: removeTail()
-    // COMPORTAMENTO: Remove o nó do final da lista e retorna a referência do
-    // nó removido.
-    // Ou retorna null caso a lista esteja vazia.
+    // Remove o elemento do final da lista
     public Node removeTail() {
         
+        // Se a lista estiver vazia, retorna null
         if (isEmpty()) {
             return null;
         }
 
-        Node toRemove = tail;
+        Node toRemove = tail; // Guarda a referência do nó a ser removido
 
-        tail = tail.getPrev();
+        tail = tail.getPrev(); // A cauda passa a ser o anterior nó
+
+        // Se a lista não estiver vazia, o próximo da cauda será null
         if (tail != null) {
             tail.setNext(null);
-        } else {
+        }
+        
+        // Se a lista estiver vazia, a cabeça também será null
+        else {
             head = null;
         }
 
-        toRemove.setPrev(null);
-        --count;
+        toRemove.setPrev(null); // O anterior do nó removido será null
+        --count; // Decrementa o contador de elementos
 
-        return toRemove;
+        return toRemove; // Retorna a referência do nó removido
 
     }
 
-    // OPERAÇÃO: removeNode(<ID da pessoa>)
-    // COMPORTAMENTO: Remove o nó que contém o <ID da pessoa> da lista e retorna
-    // a referência do nó removido.
-    // Ou retorna null caso não exista um nó com <ID da pessoa>.
+    // Remove o elemento da posição especificada
     public Node removeNode(String id) {
 
-        Node toRemove = getNode(id);
+        Node toRemove = getNode(id); // Busca o nó com o ID especificado
 
+        // Se o nó não existir, retorna null
         if (toRemove == null) {
             return null;
         }
 
-        if (toRemove == head) {
+        // Se o nó for a cabeça, remove a cabeça
+        else if (toRemove == head) {
             return removeHead();
         }
 
-        if (toRemove == tail) {
+        // Se o nó for a cauda, remove a cauda
+        else if (toRemove == tail) {
             return removeTail();
         }
 
-        Node prevNode = toRemove.getPrev();
-        Node nextNode = toRemove.getNext();
+        Node prevNode = toRemove.getPrev(); // Guarda o nó anterior
+        Node nextNode = toRemove.getNext(); // Guarda o próximo nó
 
-        prevNode.setNext(nextNode);
-        nextNode.setPrev(prevNode);
+        prevNode.setNext(nextNode); // O próximo do anterior será o próximo do nó removido
+        nextNode.setPrev(prevNode); // O anterior do próximo será o anterior do nó removido
 
-        toRemove.setPrev(null);
-        toRemove.setNext(null);
-        --count;
+        toRemove.setPrev(null); // O anterior do nó removido será null
+        toRemove.setNext(null); // O próximo do nó removido será null
+        --count; // Decrementa o contador de elementos
 
-        return toRemove;
+        return toRemove; // Retorna a referência do nó removido
+
     }
 
-    // OPERAÇÃO: getHead()
-    // COMPORTAMENTO: Retorna uma referência para o nó do início da lista.
-    // Ou retorna null caso a lista esteja vazia.
+    // Retorna o primeiro elemento da lista
     public Node getHead() {
-        
         return head;
-
     }
 
-    // OPERAÇÃO: getTail()
-    // COMPORTAMENTO: Retorna uma referência para o nó do final da lista.
-    // Ou retorna null caso a lista esteja vazia.
+    // Retorna o último elemento da lista
     public Node getTail() {
-        
         return tail;
-
     }
 
-    // OPERAÇÃO: getNode(<ID da pessoa>)
-    // COMPORTAMENTO: Retorna uma referência para o nó que contém o <ID da pessoa>
-    // da lista.
-    // Ou retorna null caso não exista um nó com <ID da pessoa>.
+    // Retorna o elemento da posição especificada
     public Node getNode(String id) {
         
-        Node node = head;
+        Node node = head; // Começa a busca pelo primeiro nó
 
+        // Percorre a lista enquanto o nó não for null
         while (node != null) {
+
+            // Se o ID do nó for igual ao ID especificado, retorna o nó
             if (node.getId().equals(id)) {
                 return node;
             }
-            node = node.getNext();
+
+            node = node.getNext(); // Avança para o próximo nó
         }
 
-        return null;
+        return null; // Se não encontrar o nó, retorna null
 
     }
-
-    // OPERAÇÃO: count()
-    // COMPORTAMENTO: Retorna a quantidade de nós da lista.
+    
+    // Retorna o número de elementos da lista
     public int count() {
-        
         return count;
-
     }
 
-    // OPERAÇÃO: isEmpty()
-    // COMPORTAMENTO: Retorna true se a lista estiver vazia ou false, caso
-    // contrário.
+    // Retorna true se a lista estiver vazia
     public boolean isEmpty() {
-        
         return head == null;
-
     }
 
-    // OPERAÇÃO: clear()
-    // COMPORTAMENTO: Esvazia a lista, liberando a memória de todos os nós da lista.
-    public void clear() {
-        
-        while (!isEmpty()) {
-            removeHead();
-        }
 
-    }
+    // Remove todos os elementos da lista
+	public void clear() {
 
-    // OPERAÇÃO: toString()
-    // COMPORTAMENTO: Retorna uma string com o conteúdo da lista (caso queira, use o
-    // exemplo do método toString() da classe LinkedListOriginal).
+        // Remove o primeiro elemento enquanto a lista não estiver vazia
+		while (!isEmpty()) {
+			removeHead();
+		}
+
+	}
+
+    // Retorna uma representação da lista em String
     @Override
     public String toString() {
         
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(); // Cria um StringBuilder para concatenar a representação da lista
 
-        sb.append("(" + count + ") \n");
+        sb.append("(" + count + ") \n"); // Adiciona o número de elementos da lista
 
-        Node node = head;
+        Node node = head; // Começa a busca pelo primeiro nó
+
+        // Percorre a lista enquanto o nó não for nulo e concatena a representação do nó
         while (node != null) {
             sb.append(node.getPrev() == null? "null": node.getPrev().getId())
             .append(" <- ")
@@ -245,10 +220,11 @@ public class DLinkedList {
             .append(" -> ")
             .append(node.getNext() == null? "null": node.getNext().getId())
             .append("\n");
-            node = node.getNext();
+            node = node.getNext(); // Avança para o próximo nó
         }
 
-        return sb.toString();
+        return sb.toString(); // Retorna a representação da lista
+        
     }
 
 }

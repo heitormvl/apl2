@@ -1,20 +1,18 @@
-//******************** ATENÇÃO! *********************
-// O conteúdo deste arquivo não deve ser modificado!
-//******************** ATENÇÃO! *********************
-// arquivo: src/apl2/NodeOriginal.java
-
 public class NodeOriginal {
 	
+    // Atributos
 	private int id;
 	private String nome;
 	private int inteiro;
 	private int decimo;
 	private NodeOriginal next;
 	
+    // Construtor padrão
 	public NodeOriginal() {
 		this(-1, "", 0, 0, null);
 	}
 	
+    // Construtor com parâmetros
 	public NodeOriginal(int id, String nome, int inteiro, int decimo, NodeOriginal next) {
 		this.id = id;
 		this.nome = nome;
@@ -23,6 +21,7 @@ public class NodeOriginal {
 		this.next = next;
 	}
 	
+    // Getters e setters
 	public int getId() {
 		return id;
 	}
@@ -63,6 +62,7 @@ public class NodeOriginal {
 		this.next = next;
 	}
 	
+    // Método toString para exibição dos dados do nó
 	@Override
 	public String toString() {
 		return "[dados: (" + id + ";" + nome + ";" + inteiro + ";" + decimo + ") | next: " + next + "]";

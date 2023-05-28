@@ -1,22 +1,3 @@
-// arquivo: src/apl2/Node.java
-
-// Programa por:
-//  Heitor Maciel (32251661)
-//  Davi Rodrigues (32266960)
-//  Vinícius Magno (32223201)
-//  Gabriel Braum (32224532)
-//  Roberto Rinco (32269471)
-
-// -- A classe Node (que pertence ao pacote apl2) deve conter os atributos que
-// representam a nova versão dos dados de uma pessoa, conforme descrito no
-// enunciado da atividade Apl2.
-// -- A classe deve conter os construtores apropriados, assim como os métodos
-// getters e setters.
-// -- A classe também representa um nó que é usado na implementação da lista
-// duplamente encadeada (classe DLinkedList).
-// -- A classe deve sobrescrever (override) o método public String toString()
-// {...}, retornando uma string com os valores dos atributos da classe.
-
 public class Node {
 
     // Atributos
@@ -26,11 +7,12 @@ public class Node {
     private Node next;
     private Node prev;
 
-    // Construtores
+    // Construtor padrão
     public Node() {
         this("", "", 0, null, null); 
     }
 
+    // Construtor com parâmetros
     public Node(String id, String nome, float nota, Node next, Node prev) {
         this.id = id;
         this.nome = nome;
@@ -39,7 +21,7 @@ public class Node {
         this.prev = prev;
     }
 
-    // Getters e Setters
+    // Getters e setters
     public String getId() {
         return id;
     }
@@ -80,10 +62,9 @@ public class Node {
         this.prev = prev;
     }
 
-    // toString
+    // Método toString para exibição dos nós
     @Override
     public String toString() {
-        // return getPrev().getId() + " <- " + "(" + getId() + ";" + getNome() + ";" + getNota() + ")" + " -> " + getNext().getId();
         return (getPrev() == null? "null" : getPrev().getId()) + " <- " + "(" + getId() + ";" + getNome() + ";" + getNota() + ")" + " -> " + (getNext() == null? "null" : getNext().getId());
     }
 }

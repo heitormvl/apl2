@@ -9,6 +9,13 @@
             "name": "MainApl2",
             "request": "launch",
             "mainClass": "MainApl2",
+            "projectName": "apl2"
+        },
+        {
+            "type": "java",
+            "name": "MainApl2",
+            "request": "launch",
+            "mainClass": "MainApl2",
             "projectName": "apl2_2e6d99a7"
         },
         {
