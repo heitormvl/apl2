@@ -29,13 +29,12 @@ public class DLinkedList {
         }
 
         head = node; // O novo nó passa a ser a cabeça da lista
-        ++count; // Incrementa o contador de elementos
-
+        ++count;     // Incrementa o contador de elementos
     }
 
     // Insere um elemento no final da lista
     public void append(String id, String nome, float nota) {
-        
+
         // Cria um novo nó e o inicializa com os parâmetros recebidos
         Node node = new Node(id, nome, nota, null, tail);
 
@@ -50,13 +49,12 @@ public class DLinkedList {
         }
 
         tail = node; // O novo nó passa a ser a cauda da lista
-        ++count; // Incrementa o contador de elementos
-
+        ++count;     // Incrementa o contador de elementos
     }
 
     // Insere um elemento na posição especificada
     public Node removeHead() {
-        
+
         // Se a lista estiver vazia, retorna null
         if (isEmpty()) {
             return null;
@@ -65,7 +63,7 @@ public class DLinkedList {
         Node toRemove = head; // Guarda a referência do nó a ser removido
 
         head = head.getNext(); // A cabeça passa a ser o próximo nó
-        --count; // Decrementa o contador de elementos
+        --count;               // Decrementa o contador de elementos
 
         // Se a lista não estiver vazia, o anterior da cabeça será null
         if (head != null) {
@@ -78,13 +76,12 @@ public class DLinkedList {
         }
 
         toRemove.setNext(null); // O próximo do nó removido será null
-        return toRemove; // Retorna a referência do nó removido
-
+        return toRemove;        // Retorna a referência do nó removido
     }
 
     // Remove o elemento do final da lista
     public Node removeTail() {
-        
+
         // Se a lista estiver vazia, retorna null
         if (isEmpty()) {
             return null;
@@ -98,17 +95,16 @@ public class DLinkedList {
         if (tail != null) {
             tail.setNext(null);
         }
-        
+
         // Se a lista estiver vazia, a cabeça também será null
         else {
             head = null;
         }
 
         toRemove.setPrev(null); // O anterior do nó removido será null
-        --count; // Decrementa o contador de elementos
+        --count;                // Decrementa o contador de elementos
 
         return toRemove; // Retorna a referência do nó removido
-
     }
 
     // Remove o elemento da posição especificada
@@ -139,25 +135,20 @@ public class DLinkedList {
 
         toRemove.setPrev(null); // O anterior do nó removido será null
         toRemove.setNext(null); // O próximo do nó removido será null
-        --count; // Decrementa o contador de elementos
+        --count;                // Decrementa o contador de elementos
 
         return toRemove; // Retorna a referência do nó removido
-
     }
 
     // Retorna o primeiro elemento da lista
-    public Node getHead() {
-        return head;
-    }
+    public Node getHead() { return head; }
 
     // Retorna o último elemento da lista
-    public Node getTail() {
-        return tail;
-    }
+    public Node getTail() { return tail; }
 
     // Retorna o elemento da posição especificada
     public Node getNode(String id) {
-        
+
         Node node = head; // Começa a busca pelo primeiro nó
 
         // Percorre a lista enquanto o nó não for null
@@ -172,35 +163,29 @@ public class DLinkedList {
         }
 
         return null; // Se não encontrar o nó, retorna null
+    }
 
-    }
-    
     // Retorna o número de elementos da lista
-    public int count() {
-        return count;
-    }
+    public int count() { return count; }
 
     // Retorna true se a lista estiver vazia
-    public boolean isEmpty() {
-        return head == null;
-    }
-
+    public boolean isEmpty() { return head == null; }
 
     // Remove todos os elementos da lista
-	public void clear() {
+    public void clear() {
 
         // Remove o primeiro elemento enquanto a lista não estiver vazia
-		while (!isEmpty()) {
-			removeHead();
-		}
-
-	}
+        while (!isEmpty()) {
+            removeHead();
+        }
+    }
 
     // Retorna uma representação da lista em String
     @Override
     public String toString() {
-        
-        StringBuilder sb = new StringBuilder(); // Cria um StringBuilder para concatenar a representação da lista
+
+        StringBuilder sb =
+            new StringBuilder(); // Cria um StringBuilder para concatenar a representação da lista
 
         sb.append("(" + count + ") \n"); // Adiciona o número de elementos da lista
 
@@ -208,23 +193,21 @@ public class DLinkedList {
 
         // Percorre a lista enquanto o nó não for nulo e concatena a representação do nó
         while (node != null) {
-            sb.append(node.getPrev() == null? "null": node.getPrev().getId())
-            .append(" <- ")
-            .append("(")
-            .append(node.getId())
-            .append(";")
-            .append(node.getNome())
-            .append(";")
-            .append(node.getNota())
-            .append(")")
-            .append(" -> ")
-            .append(node.getNext() == null? "null": node.getNext().getId())
-            .append("\n");
+            sb.append(node.getPrev() == null ? "null" : node.getPrev().getId())
+                .append(" <- ")
+                .append("(")
+                .append(node.getId())
+                .append(";")
+                .append(node.getNome())
+                .append(";")
+                .append(node.getNota())
+                .append(")")
+                .append(" -> ")
+                .append(node.getNext() == null ? "null" : node.getNext().getId())
+                .append("\n");
             node = node.getNext(); // Avança para o próximo nó
         }
 
         return sb.toString(); // Retorna a representação da lista
-        
     }
-
 }
